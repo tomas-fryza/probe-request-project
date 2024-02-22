@@ -1,6 +1,12 @@
 # Probe request project
 
-Wi-Fi probe requests collected in lab `sc6-61` at Brno Univ. of Technology and stored in both, CSV and PCAP (compatible with Wireshark or Scapy) files. The two [simple sniffers](https://gitlab.com/tbravenec/esp32-probe-sniffer) of probe pequests using ESP32 as a networking device with connected SD card as a storage were used at `position_1` and `position_2`.
+Wi-Fi probe requests collected in lab `sc6-61` at Brno Univ. of Technology and stored in both, CSV and PCAP (compatible with [Wireshark](https://www.wireshark.org/) or Python [Scapy](https://scapy.readthedocs.io/en/latest/index.html)) files. The two [simple sniffers](https://gitlab.com/tbravenec/esp32-probe-sniffer) of probe pequests using ESP32 as a networking device with connected SD card as a storage were used at `position_1` and `position_2`.
+
+To install latest version of Scapy:
+
+```bash
+pip3 install scapy
+```
 
 The dataset consists of the following columns:
 
