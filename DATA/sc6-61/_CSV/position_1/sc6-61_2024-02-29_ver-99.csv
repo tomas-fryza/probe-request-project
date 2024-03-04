@@ -1,4 +1,4 @@
-datetime;dst;src;src_vendor;randomized;rssi;idx;seq_num;ch_freq;FCfield;ssid;dot11elt;oui;truth
+datetime;dst;src;src_vendor;randomized;rssi;idx;seq_num;ch_freq;FCfield;ssid;dot11elt;oui;occupancy
 2024-02-29 14:57:15.425964;ff:ff:ff:ff:ff:ff;e2:65:6e:66:8b:e1;;1;-81;0;856;2427;;;[0, 1, 50, 3, 45, 191, 221, 127, 255, 221, 221];[20722, 5271450, 9240048];5.0
 2024-02-29 14:57:15.486091;ff:ff:ff:ff:ff:ff;e2:65:6e:66:8b:e1;;1;-83;1;858;2432;;;[0, 1, 50, 3, 45, 191, 221, 127, 255, 221, 221];[20722, 5271450, 9240048];5.0
 2024-02-29 14:57:15.548128;ff:ff:ff:ff:ff:ff;e2:65:6e:66:8b:e1;;1;-83;2;860;2437;;;[0, 1, 50, 3, 45, 191, 221, 127, 255, 221, 221];[20722, 5271450, 9240048];5.0

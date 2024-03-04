@@ -1,4 +1,4 @@
-datetime;dst;src;src_vendor;randomized;rssi;idx;seq_num;ch_freq;FCfield;ssid;dot11elt;oui;truth
+datetime;dst;src;src_vendor;randomized;rssi;idx;seq_num;ch_freq;FCfield;ssid;dot11elt;oui;occupancy
 2024-02-09 00:27:03.789266;ff:ff:ff:ff:ff:ff;94:04:9c:cd:b7:50;HUAWEI TECHNOLOGIES CO.,LTD;0;-85;0;260;2427;;SSID_97792324;[0, 1, 50, 45, 51, 127];[];3.0
 2024-02-09 00:27:14.133596;ff:ff:ff:ff:ff:ff;94:04:9c:cd:b7:50;HUAWEI TECHNOLOGIES CO.,LTD;0;-86;1;256;2417;;SSID_97792324;[0, 1, 50, 45, 51, 127];[];3.0
 2024-02-09 00:27:15.313626;ff:ff:ff:ff:ff:ff;94:04:9c:cd:b7:50;HUAWEI TECHNOLOGIES CO.,LTD;0;-93;2;259;2422;;SSID_97792324;[0, 1, 50, 45, 51, 127];[];3.0

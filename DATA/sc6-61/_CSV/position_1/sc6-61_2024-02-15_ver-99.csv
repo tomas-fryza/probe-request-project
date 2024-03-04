@@ -1,4 +1,4 @@
-datetime;dst;src;src_vendor;randomized;rssi;idx;seq_num;ch_freq;FCfield;ssid;dot11elt;oui;truth
+datetime;dst;src;src_vendor;randomized;rssi;idx;seq_num;ch_freq;FCfield;ssid;dot11elt;oui;occupancy
 2024-02-15 15:02:51.191516;ff:ff:ff:ff:ff:ff;dc:fb:48:8c:71:fc;Intel Corporate;0;-55;0;1786;2462;;;[0, 1, 50, 45, 127, 221];[5271450];nan
 2024-02-15 15:02:51.200499;ff:ff:ff:ff:ff:ff;dc:fb:48:8c:71:fc;Intel Corporate;0;-51;1;1787;2462;;;[0, 1, 50, 45, 127, 221];[5271450];nan
 2024-02-15 15:02:51.763654;ff:ff:ff:ff:ff:ff;96:51:c6:82:f8:38;;1;-89;2;759;2417;;;[0, 1, 50, 3, 45, 127, 255];[];nan
