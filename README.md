@@ -15,20 +15,33 @@ import pandas as pd
 
 df = pd.read_csv(<filename.csv>, sep=";", decimal=".")
 
+print(f"Number of probe requests: {len(df):,}")
+
 # Print basic information about a DataFrame
 print(df.info())
 
 # Print all columns of the first 5 lines of dataframe
 pd.set_option('display.max_columns', None)
 print(df.head())
-
-print(f"Number of probe requests: {len(df):,}")
 ```
 
 The dataset consists of the following columns:
 
-```csv
-datetime;dst;src;src_vendor;randomized;rssi;idx;seq_num;ch_freq;FCfield;ssid;dot11elt;oui;occupancy
-```
+| **Name**     | **Description**                              |
+|:-------------|:---------------------------------------------|
+| `datetime`   | Timestamp                                    |
+| `dst`        | Destination MAC                              |
+| `src`        | *Source MAC                                  |
+| `src_vendor` | Source vendor name                           |
+| `randomized` | Randomized MAC?                              |
+| `rssi`       | Received Signal Strength Indicator           |
+| `idx`        | Index of received probe-request in PCAP file |
+| `seq_num`    | Sequence number                              |
+| `ch_freq`    | Frequency channel                            |
+| `FCfield`    | Frame Control field                          |
+| `ssid`       | *Service Set Identifier (Wi-Fi name)         |
+| `dot11elt`   | Scapy layer according to IEEE 802.11         |
+| `oui`        | Organization Unique Identifier               |
+| `occupancy`  | Number of individuals present in the lab     |
 
-The `ssid` and a portion of the `src` MAC addresses were anonymized. The final column, `occupancy`, contains the number of individuals present in the laboratory.
+*The `ssid` and a portion of the `src` MAC addresses were anonymized.
