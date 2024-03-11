@@ -25,6 +25,8 @@ pd.set_option('display.max_columns', None)
 print(df.head())
 ```
 
+## Dataset structure
+
 The dataset consists of the following columns:
 
 | **Name**     | **Description**                              |
@@ -45,3 +47,24 @@ The dataset consists of the following columns:
 | `occupancy`  | Number of individuals present in the lab     |
 
 *The `ssid` and a portion of the `src` MAC addresses were anonymized.
+
+## Anonymized MACs
+
+In the lab, there are several All-in-One computers with Wi-Fi. The following list of anonymized MACs must be removed from the dataset within the pre-processing operations.
+
+```bash
+dc:fb:48:68:be:e4
+dc:fb:48:8c:71:fc
+dc:fb:48:2a:52:e0
+dc:fb:48:f5:c6:c2
+dc:fb:48:e3:ab:78
+dc:fb:48:00:51:90
+dc:fb:48:75:d8:42
+dc:fb:48:de:86:8d
+dc:fb:48:dd:c6:0b
+dc:fb:48:55:d5:78
+dc:fb:48:c2:1d:64
+40:ec:99:f9:34:a6
+40:ec:99:8e:3f:63
+40:ec:99:1f:3e:75
+```
