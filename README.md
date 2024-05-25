@@ -1,6 +1,6 @@
 # Probe request project
 
-Wi-Fi probe requests collected in lab `sc6-61` at Brno Univ. of Technology and stored in both, CSV and PCAP (compatible with [Wireshark](https://www.wireshark.org/) or Python [Scapy](https://scapy.readthedocs.io/en/latest/index.html)) files. The two [simple sniffers](https://gitlab.com/tbravenec/esp32-probe-sniffer) of probe pequests using ESP32 as a networking device with connected SD card as a storage were used at `position_1` and `position_2`.
+Wi-Fi probe requests collected in lab `sc6-61` at Brno Univ. of Technology and stored in both, CSV and PCAP (compatible with [Wireshark](https://www.wireshark.org/) or Python [Scapy](https://scapy.readthedocs.io/en/latest/index.html)) files. The two probe requests' [sniffers](https://gitlab.com/tbravenec/esp32-probe-sniffer) using ESP32 as a networking device with SD card as a storage were used at `position_1` and `position_2`.
 
 To work with PCAP files in Python, install the latest version of Scapy:
 
@@ -46,11 +46,11 @@ The dataset consists of the following columns:
 | `oui`        | Organization Unique Identifier               |
 | `occupancy`  | Number of individuals present in the lab     |
 
-*The `ssid` and a portion of the `src` MAC addresses were anonymized.
+*The `ssid` and a portion of the `src` MAC addresses were anonymized in this dataset.
 
 ## Anonymized MACs
 
-In the lab, there are several All-in-One computers with Wi-Fi. The following list of anonymized MACs must be removed from the dataset within the pre-processing operations.
+In the lab, there are several All-in-One computers with Wi-Fi. The following list of anonymized MACs should be removed from the dataset within the pre-processing operations.
 
 ```bash
 dc:fb:48:68:be:e4

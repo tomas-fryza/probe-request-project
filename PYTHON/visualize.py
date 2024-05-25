@@ -6,60 +6,69 @@ except ImportError as e:
     raise SystemExit(1)
 
 
-def display_probes(filename, rssi_thr, interval="10min"):
-    """Read .csv file and display the number of all Probe Requests in time
+def display_probes(filenames, rssi_thr, interval="10min"):
+    """Read .csv file(s) and display the number of all Probe Requests in time
 
-    Read .csv file and display the number of Probe Requests below the RSSI
+    Read .csv file(s) and display the number of Probe Requests below the RSSI
     threshold, accumulated per time interval.
 
-    :param filename:  Input .csv file
-    :param rssi_thr:  Signal strength threshold
-    :param interval:  Time interval in minutes, e.g. 10min
+    :param filenames:  Input .csv file(s)
+    :param rssi_thr:   Signal strength threshold
+    :param interval:   Time interval in minutes, e.g. 10min
 
-    :type filename:   str
-    :type rssi_thr:   int
-    :type interval:   str
+    :type filenames:   list
+    :type rssi_thr:    int
+    :type interval:    str
 
-    :return:          None
+    :return:           None
     """
     print("")  # New line only
-    print(f"Read input file(s): {filename}")
-    print(f"RSSI threshold: {rssi_thr} dBm")
-    print(f"Create groups of {interval}... ", end="")
-
-    csv_file1 = "../DATA/sc6-61/_CSV/position_1/"+filename
-    csv_file2 = "../DATA/sc6-61/_CSV/position_2/"+filename
+    print(f"Read input file(s): {filenames}")
 
     # Load .csv file into a DataFrame
-    df1 = pd.read_csv(csv_file1, sep=";", decimal=".")
-    df2 = pd.read_csv(csv_file2, sep=";", decimal=".")
+    csv_files1 = [f"../DATA/sc6-61/_CSV/position_1/{x}" for x in filenames]
+    csv_files2 = [f"../DATA/sc6-61/_CSV/position_2/{x}" for x in filenames]
+    df1 = pd.concat(
+        (pd.read_csv(x, sep=";", decimal=".") for x in csv_files1),
+        ignore_index=True)
+    df2 = pd.concat(
+        (pd.read_csv(x, sep=";", decimal=".") for x in csv_files2),
+        ignore_index=True)
+    # df1 = pd.read_csv(csv_file1, sep=";", decimal=".")
+    # df2 = pd.read_csv(csv_file2, sep=";", decimal=".")
 
     # Convert timestamp to pandas datetime object
     df1["datetime"] = pd.to_datetime(df1["datetime"])
     df2["datetime"] = pd.to_datetime(df2["datetime"])
+    print(f"Number of probe requests @ position1: {len(df1):,}, position2: {len(df2):,}")
 
-    # Group data by intervals and filter low RSSI values
-    df_grp1 = df1[df1["rssi"] >= rssi_thr].groupby(
-        pd.Grouper(key="datetime", freq=interval)).size().reset_index(name="count")
-    df_grp2 = df2[df2["rssi"] >= rssi_thr].groupby(
-        pd.Grouper(key="datetime", freq=interval)).size().reset_index(name="count")
-
-    # Drop intervals with zero probe requests
-    df_grp1 = (df_grp1.loc[df_grp1["count"] > 0]).reset_index(drop=True)
-    df_grp2 = (df_grp2.loc[df_grp2["count"] > 0]).reset_index(drop=True)
+    # Filter low RSSI values
+    print(f"Remove data with RSSI < {rssi_thr} dBm... ", end="")
+    df1 = df1[df1["rssi"] >= rssi_thr].reset_index(drop=True)
+    df2 = df2[df2["rssi"] >= rssi_thr].reset_index(drop=True)
     print("Done")
+    print(f"Number of probe requests @ position1: {len(df1):,}, position2: {len(df2):,}")
+
+    # Group data by intervals
+    print(f"Create groups of {interval}... ", end="")
+    df_grp1 = df1.groupby(
+        pd.Grouper(key="datetime", freq=interval)).size().reset_index(name="count")
+    df_grp2 = df2.groupby(
+        pd.Grouper(key="datetime", freq=interval)).size().reset_index(name="count")
+    print("Done")
+
+    print(f"Number of groups @ position1: {len(df_grp1):,}, position2: {len(df_grp2):,}")
 
     # Figure size
     plt.figure(figsize=(12, 6), dpi=90, facecolor="white")
 
     # Plot values
-    x1 = list(df_grp1.index.values)
-    x2 = list(df_grp2.index.values)
-    plt.plot(x1, df_grp1["count"], label="position 1")
-    plt.plot(x2, df_grp2["count"], label="position 2")
+    plt.plot(df_grp1["datetime"], df_grp1["count"], label="position 1")
+    plt.plot(df_grp2["datetime"], df_grp2["count"], label="position 2")
+    plt.plot(df1["datetime"], df1["occupancy"], label="truth")
 
-    plt.title(f"Filename: {filename}, RSSI > {str(rssi_thr)} dBm")
-    plt.xlabel("n [-]")
+    plt.title(f"RSSI > {str(rssi_thr)} dBm")
+    plt.xlabel("datetime")
     plt.ylabel(f"Captured Probe Requests [PR/{interval}]")
 
     # Grid and legend
@@ -77,8 +86,14 @@ def display_probes(filename, rssi_thr, interval="10min"):
 
 
 def main():
-    filename = "sc6-61_2024-03-14_ver-99.csv"
-    display_probes(filename, rssi_thr=-88, interval="10min")
+    filenames = [
+        "sc6-61_2024-03-13_ver-99.csv",
+        "sc6-61_2024-03-14_ver-99.csv",
+        "sc6-61_2024-03-15_ver-99.csv",
+        "sc6-61_2024-03-16_ver-99.csv",
+        "sc6-61_2024-03-17_ver-99.csv",
+    ]
+    display_probes(filenames, rssi_thr=-80, interval="2min")
 
 
 if __name__ == "__main__":
